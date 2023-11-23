@@ -33,7 +33,7 @@ pipeline{
         }
         stage(pushimage) {
             steps {
-                script(
+                script (
                     withCredentials([string(credentialsId: 'dockerpass', variable: 'mypasswd')]) {
                     sh 'docker login -u praneethysp007 -p ${mypasswd}'
 
