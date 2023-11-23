@@ -22,10 +22,10 @@ pipeline{
         stage(artifacts) {
             archiveArtifacts artifacts: '**/target/*.jar'
         }
-        stage(docker build image) {
+        stage(dockerbuildimage) {
             sh 'docker image build -t praneethysp007/expimge:1.0 .'
         }
-        stage(push image) {
+        stage(pushimage) {
             script(
                 withCredentials([string(credentialsId: 'dockerpass', variable: 'mypasswd')]) {
                 sh 'docker login -u praneethysp007 -p ${mypasswd}'
