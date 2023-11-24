@@ -26,25 +26,25 @@ pipeline{
                 archiveArtifacts artifacts: '**/target/*.jar'
             }
         }
-        // stage(dockerbuildimage){
-        //     steps{
-        //         sh 'docker image build -t praneethysp007/expimge:1.0 .'
-        //     }
-        // }
-        // stage(pushimage){
-        //     steps{
-        //         script{
-        //             withCredentials([string(credentialsId: 'dockerpass', variable: 'mypasswd')]) {
+        stage(dockerbuildimage){
+            steps{
+                sh 'docker image build -t praneethysp007/expimge:1.0 .'
+            }
+        }
+        stage(pushimage){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'dockerpass', variable: 'mypasswd')]) {
 
-        //             sh 'docker login -u praneethysp007 -p ${mypasswd}'
+                    sh 'docker login -u praneethysp007 -p ${mypasswd}'
 
-        //             sh 'docker push praneethysp007/expimge:1.0'
+                    sh 'docker push praneethysp007/expimge:1.0'
          
-        //             }
-        //         }
-        //     }   
+                    }
+                }
+            }   
             
-        // }
+        }
     }
 
 }
